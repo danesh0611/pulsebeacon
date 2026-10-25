@@ -1,0 +1,6 @@
+{
+  "name": "PulseBeacon - BLE Smart Attendance System",
+  "description": "Enterprise-grade Bluetooth Low Energy (BLE) proximity attendance verification system for universities and colleges with real-time web dashboard, FastAPI backend, and Android Jetpack Compose app.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
