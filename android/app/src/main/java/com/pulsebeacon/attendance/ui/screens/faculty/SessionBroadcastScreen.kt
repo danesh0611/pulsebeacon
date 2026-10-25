@@ -8,6 +8,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Stop
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -32,7 +33,8 @@ fun SessionBroadcastScreen(
     bleAdvertiser: BleAdvertiser,
     hasPermissions: Boolean,
     onRequestPermissions: () -> Unit,
-    onSwitchRole: () -> Unit
+    onSwitchRole: () -> Unit,
+    onLogout: () -> Unit
 ) {
     val scope = rememberCoroutineScope()
     val advertisingState by bleAdvertiser.state.collectAsState()
@@ -84,10 +86,22 @@ fun SessionBroadcastScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Faculty BLE Transmitter", fontWeight = FontWeight.Bold) },
+                title = {
+                    Column {
+                        Text("Faculty BLE Transmitter", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                        Text(
+                            repository.getUserFullName() ?: "Dr. Elena Rostova",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                        )
+                    }
+                },
                 actions = {
                     TextButton(onClick = onSwitchRole) {
                         Text("Student View", color = MaterialTheme.colorScheme.primary)
+                    }
+                    IconButton(onClick = onLogout) {
+                        Icon(Icons.Default.ExitToApp, contentDescription = "Log Out", tint = MaterialTheme.colorScheme.error)
                     }
                 }
             )

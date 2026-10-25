@@ -8,6 +8,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BluetoothSearching
 import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -26,7 +27,8 @@ import kotlinx.coroutines.launch
 fun StudentHomeScreen(
     repository: AttendanceRepository,
     onNavigateToScan: (sessionId: Int, sessionTag: String, rssiCutoff: Float) -> Unit,
-    onSwitchRole: () -> Unit
+    onSwitchRole: () -> Unit,
+    onLogout: () -> Unit
 ) {
     val scope = rememberCoroutineScope()
     var sessions by remember { mutableStateOf<List<ActiveSession>>(emptyList()) }
@@ -71,6 +73,9 @@ fun StudentHomeScreen(
                     }
                     TextButton(onClick = onSwitchRole) {
                         Text("Faculty Mode", color = MaterialTheme.colorScheme.primary)
+                    }
+                    IconButton(onClick = onLogout) {
+                        Icon(Icons.Default.ExitToApp, contentDescription = "Log Out", tint = MaterialTheme.colorScheme.error)
                     }
                 }
             )

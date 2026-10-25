@@ -7,7 +7,7 @@ import retrofit2.http.*
 interface AttendanceApiService {
 
     @POST("api/auth/login")
-    async suspend fun login(
+    suspend fun login(
         @Body credentials: Map<String, String>
     ): Response<AuthTokenResponse>
 
